@@ -140,12 +140,12 @@ def abv_vs_popularity(df):
     plt.scatter(summary['avg_abv'], summary['num_beers'], label='Styles')
     # Bin ABV values for standard deviation line
     bins = pd.cut(summary['avg_abv'], bins=10)
-    std_popularity_per_bin = summary.groupby(bins)['num_beers'].std()
-    bin_centers = [interval.mid for interval in std_popularity_per_bin.index]
-    plt.plot(bin_centers, std_popularity_per_bin.values, color='red', marker='o', linestyle='-', label='Std Dev of Popularity')
+    mean_popularity_per_bin = summary.groupby(bins)['num_beers'].mean()
+    bin_centers = [interval.mid for interval in mean_popularity_per_bin.index]
+    plt.plot(bin_centers, mean_popularity_per_bin.values, color='red', marker='o', linestyle='-', label='Mean of Popularity')
     plt.xlabel('Average ABV (%)')
     plt.ylabel('Number of Unique Beers within the Style')
-    plt.title('Std Dev of Popularity of Beer Style vs. Average ABV')
+    plt.title('Mean of Popularity of Beer Style vs. Average ABV')
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.legend()
     plt.tight_layout()
@@ -166,12 +166,12 @@ def ibu_vs_popularity(df):
     plt.scatter(summary['avg_ibu'], summary['num_beers'], label='Styles')
     # Bin IBU values for standard deviation line
     bins = pd.cut(summary['avg_ibu'], bins=10)
-    std_popularity_per_bin = summary.groupby(bins)['num_beers'].std()
-    bin_centers = [interval.mid for interval in std_popularity_per_bin.index]
-    plt.plot(bin_centers, std_popularity_per_bin.values, color='red', marker='o', linestyle='-', label='Std Dev of Popularity')
+    mean_popularity_per_bin = summary.groupby(bins)['num_beers'].mean()
+    bin_centers = [interval.mid for interval in mean_popularity_per_bin.index]
+    plt.plot(bin_centers, mean_popularity_per_bin.values, color='red', marker='o', linestyle='-', label='Mean of Popularity')
     plt.xlabel('Average IBU')
     plt.ylabel('Number of Unique Beers within the Style')
-    plt.title('Std Dev of Popularity of Beer Style vs. Average IBU')
+    plt.title('Mean of Popularity of Beer Style vs. Average IBU')
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.legend()
     plt.tight_layout()
